@@ -4,7 +4,6 @@ import com.singhankit.jdk.cmd.JdkMonCmd;
 import com.singhankit.jdk.core.Log;
 import picocli.CommandLine;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -26,22 +25,21 @@ public class JdkMonitorApp {
     private static CommandLine.IExecutionExceptionHandler globalExceptionHandler() {
         return (ex, commandLine, parseResult) -> {
             Log.error("Something we wrong, please contact developer...");
-            Log.info("""
-                    Generated "jdkmon.error", please create a issue on https://github.com/iamsinghankit/jdk-monitor/issues/
-                    """);
-            write(Path.of("jdkmon.error"), ex);
+            write(ex);
             return 1;
         };
     }
 
-    private static void write(Path file, Exception ex) {
+    private static void write(Exception ex) {
+        Path file = Path.of("jdkmon.error");
         var sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         ex.printStackTrace(pw);
         try {
             Files.write(file, sw.toString().getBytes(), StandardOpenOption.CREATE);
+            Log.info("Generated \"" + file.getFileName() + "\", please create a issue on https://github.com/iamsinghankit/jdk-monitor/issues/");
         } catch(IOException e) {
-            Log.error("Error while generating file: " + file.getFileName() + ", switching to console.");
+            Log.error("Error while generating file: \"" + file.getFileName() + "\", switching to console.");
             Log.error(sw.toString());
         }
     }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 class OpenJdkClient implements JdkClient {
     private static final String BASE_PAGE = "https://openjdk.org/";
-    private static final String SPECIFIC_JDK_PAGE = BASE_PAGE + "projects/jdk/%s/";
+    private static final String SPECIFIC_JDK_PAGE = BASE_PAGE + "projects/jdk/%d/";
     private static final String JDK_PAGE = BASE_PAGE + "projects/jdk/";
 
     @Override
@@ -23,7 +23,7 @@ class OpenJdkClient implements JdkClient {
     }
 
     @Override
-    public List<String> getSchedules(String version) throws IOException {
+    public List<String> getSchedules(int version) throws IOException {
         Elements blockquote = send(SPECIFIC_JDK_PAGE.formatted(version)).getElementById("main").selectXpath("blockquote");
         var schedules = new ArrayList<String>();
         for(Element element : blockquote) {
@@ -39,7 +39,7 @@ class OpenJdkClient implements JdkClient {
     }
 
     @Override
-    public List<String> getFeatures(String version) throws IOException {
+    public List<String> getFeatures(int version) throws IOException {
         Elements elements = send(SPECIFIC_JDK_PAGE.formatted(version)).getElementById("main").selectXpath("blockquote");
         var features = new ArrayList<String>();
         for(Element element : elements) {

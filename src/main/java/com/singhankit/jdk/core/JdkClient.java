@@ -21,9 +21,9 @@ public interface JdkClient {
 
     String latestJdk() throws IOException;
 
-    List<String> getSchedules(String version) throws IOException;
+    List<String> getSchedules(int version) throws IOException;
 
-    List<String> getFeatures(String version) throws IOException;
+    List<String> getFeatures(int version) throws IOException;
 
     enum Vendor {
         OPENJDK
