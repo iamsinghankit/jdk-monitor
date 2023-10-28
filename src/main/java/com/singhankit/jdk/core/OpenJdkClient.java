@@ -18,6 +18,11 @@ class OpenJdkClient implements JdkClient {
     private static final String JDK_PAGE = BASE_PAGE + "projects/jdk/";
 
     @Override
+    public String getJepUrl() {
+        return BASE_PAGE + "jeps/";
+    }
+
+    @Override
     public List<String> getSchedules(String version) throws IOException {
         Elements blockquote = send(SPECIFIC_JDK_PAGE.formatted(version)).getElementById("main").selectXpath("blockquote");
         var schedules = new ArrayList<String>();

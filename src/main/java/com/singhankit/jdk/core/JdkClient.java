@@ -17,6 +17,8 @@ public interface JdkClient {
 
     List<String> listAllJdk() throws IOException;
 
+    String getJepUrl();
+
     String latestJdk() throws IOException;
 
     List<String> getSchedules(String version) throws IOException;

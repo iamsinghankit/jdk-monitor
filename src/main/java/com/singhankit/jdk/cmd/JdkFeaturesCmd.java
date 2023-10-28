@@ -16,8 +16,7 @@ import java.util.concurrent.Callable;
 /**
  * @author Ankit Singh
  */
-@Command(name = "--features",
-        description = "List all the features targeted for the specific jdk version release.")
+@Command(name = "--features", description = "List all the features targeted for the specific jdk version release.")
 public class JdkFeaturesCmd implements Callable<Integer> {
 
     private final JdkClient jdkClient = JdkClient.of(Vendor.OPENJDK);
@@ -31,7 +30,8 @@ public class JdkFeaturesCmd implements Callable<Integer> {
             List<String> features = jdkClient.getFeatures(version);
             String table = AsciiTable.getTable(AsciiTable.FANCY_ASCII, features,
                     List.of(new Column().header("Jeps").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdk.split(" ", 2)[0].replace(":", "")),
-                            new Column().header("Description").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdk.split(" ", 2)[1])));
+                            new Column().header("Description").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdk.split(" ", 2)[1]),
+                            new Column().header("Link").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdkClient.getJepUrl() + jdk.split(" ", 2)[0].replace(":", ""))));
             Log.info(table);
         } catch(UnknownHostException ex) {
             Log.error("Please check internet connection, not able to access the resources...");
