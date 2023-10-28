@@ -153,6 +153,7 @@
                         <configuration>
                             <buildArgs>
                                 <arg>--enable-url-protocols=http,https</arg>
+                                <arg>--gc=epsilon</arg>
                             </buildArgs>
                             <fallback>false</fallback>
                         </configuration>
