@@ -19,7 +19,7 @@ import java.util.concurrent.Callable;
 @Command(name = "jdkmon",
         subcommands = {JdkFeaturesCmd.class, JdkSchedulesCmd.class},
         mixinStandardHelpOptions = true,
-        description = "JDK Monitor monitor the openjdk projects for newer changes.",
+        description = "JDK Monitor monitor the openjdk projects for newer releases details.",
         version = "jdkmon v0.1")
 public class JdkMonCmd implements Callable<Integer> {
 

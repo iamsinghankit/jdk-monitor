@@ -3,12 +3,14 @@ A simple command line utility to monitor jdk releases.
 # Usage
 ```shell
 Usage: jdkmon [-hV] [COMMAND]
-JDK Monitor monitor the openjdk projects for newer changes.
+JDK Monitor monitor the openjdk projects for newer releases.
   -h, --help      Show this help message and exit.
   -V, --version   Print version information and exit.
 Commands:
-  --features
-  --schedules
+  --features   List all the features targeted for the specific jdk version
+               release.
+  --schedules  List schedules(date) for the specific jdk version release.
+
 ```
 # Examples
 ```shell
@@ -71,3 +73,22 @@ Fetching all the available JDKs...
 ╚══════╧═══════════════════════════════════════════╝
 
 ```
+# Development
+This Project uses core java with library like [Picocli](https://picocli.info/), [Jsoup](https://jsoup.org/), [AsciiTable](https://github.com/freva/ascii-table)
+
+To build the project, make sure to the following things are installed:
+* Java 21 or newer
+* GraalVM 21+35.1 or newer
+* Maven 3.9.3 or newer
+
+The following build commands are commonly used:
+```shell
+ ./mvn clean package
+```
+# Creating a Native Executable
+You can create a native executable using:
+```shell
+./mvn package -Pnative
+```
+# License
+This code base is available under the Apache License, version 2.

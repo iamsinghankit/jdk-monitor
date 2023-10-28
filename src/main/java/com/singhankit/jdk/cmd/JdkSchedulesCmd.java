@@ -16,7 +16,8 @@ import java.util.concurrent.Callable;
 /**
  * @author Ankit Singh
  */
-@Command(name = "--schedules")
+@Command(name = "--schedules",
+        description = "List schedules(date) for the specific jdk version release.")
 public class JdkSchedulesCmd implements Callable<Integer> {
 
     private final JdkClient jdkClient = JdkClient.of(Vendor.OPENJDK);

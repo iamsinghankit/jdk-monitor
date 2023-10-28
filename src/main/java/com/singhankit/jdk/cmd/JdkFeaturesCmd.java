@@ -16,7 +16,8 @@ import java.util.concurrent.Callable;
 /**
  * @author Ankit Singh
  */
-@Command(name = "--features")
+@Command(name = "--features",
+        description = "List all the features targeted for the specific jdk version release.")
 public class JdkFeaturesCmd implements Callable<Integer> {
 
     private final JdkClient jdkClient = JdkClient.of(Vendor.OPENJDK);
