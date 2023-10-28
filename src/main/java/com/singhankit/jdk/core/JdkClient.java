@@ -10,7 +10,7 @@ public interface JdkClient {
 
     static JdkClient of(Vendor vendor) {
         return switch(vendor) {
-            case null -> throw new IllegalArgumentException("Jdk client not available for: " + vendor);
+            case null -> throw new IllegalArgumentException("Vendor required!");
             case OPENJDK -> new OpenJdkClient();
         };
     }
