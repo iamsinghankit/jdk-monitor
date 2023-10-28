@@ -10,6 +10,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Help.Visibility;
 import picocli.CommandLine.Parameters;
 
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -40,7 +41,7 @@ public class JdkFeaturesCmd implements Callable<Integer> {
                             new Column().header("Description").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdk.split(" ", 2)[1]),
                             new Column().header("Link").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdkClient.getJepUrl() + jdk.split(" ", 2)[0].replace(":", ""))));
             Log.info(table);
-        } catch(UnknownHostException ex) {
+        } catch(SocketTimeoutException | UnknownHostException ex) {
             Log.error("Please check internet connection, not able to access the resources...");
         }
         return 0;

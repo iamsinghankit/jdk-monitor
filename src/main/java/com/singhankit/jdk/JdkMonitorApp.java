@@ -23,7 +23,7 @@ public class JdkMonitorApp {
     }
 
     private static CommandLine.IExecutionExceptionHandler globalExceptionHandler() {
-        return (ex, commandLine, parseResult) -> {
+        return (ex, __, ___) -> {
             Log.error("Something we wrong, please contact developer...");
             write(ex);
             return 1;

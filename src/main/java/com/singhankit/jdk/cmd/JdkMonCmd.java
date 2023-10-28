@@ -9,6 +9,7 @@ import com.singhankit.jdk.core.Log;
 import picocli.CommandLine.Command;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -34,7 +35,7 @@ public class JdkMonCmd implements Callable<Integer> {
                     List.of(new Column().header("Version").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdk.split(" ", 2)[0]),
                             new Column().header("Status").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdk.split(" ", 2)[1])));
             Log.info(table);
-        } catch(UnknownHostException ex) {
+        } catch(SocketTimeoutException | UnknownHostException ex) {
             Log.error("Please check internet connection, not able to access the resources...");
         }
         return 0;
