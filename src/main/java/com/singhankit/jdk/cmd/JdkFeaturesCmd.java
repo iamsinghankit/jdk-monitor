@@ -18,7 +18,9 @@ import java.util.concurrent.Callable;
 /**
  * @author Ankit Singh
  */
-@Command(name = "--features", description = "List all the features targeted for the specific jdk version release.",
+@Command(name = "--features",
+        aliases = {"-f"},
+        description = "List all the features targeted for the specific jdk version release.",
         mixinStandardHelpOptions = true)
 public class JdkFeaturesCmd implements Callable<Integer> {
 
@@ -34,7 +36,7 @@ public class JdkFeaturesCmd implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         try {
-            Log.info("Fetching features for Java " + version);
+            Log.info("Fetching features for Java " + version + "...");
             List<String> features = jdkClient.getFeatures(version);
             String table = AsciiTable.getTable(AsciiTable.FANCY_ASCII, features,
                     List.of(new Column().header("Jeps").headerAlign(HorizontalAlign.RIGHT).with(jdk -> jdk.split(" ", 2)[0].replace(":", "")),

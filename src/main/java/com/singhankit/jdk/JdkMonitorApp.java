@@ -41,6 +41,7 @@ public class JdkMonitorApp {
         } catch(IOException e) {
             Log.error("Error while generating file: \"" + file.getFileName() + "\", switching to console.");
             Log.error(sw.toString());
+            Log.info("Please create a issue on https://github.com/iamsinghankit/jdk-monitor/issues/");
         }
     }
 }
